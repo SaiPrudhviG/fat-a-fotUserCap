@@ -18,14 +18,18 @@
             android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
             android:layout_marginBottom="5dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Maharaja Food"
             android:layout_gravity="center"
+            android:autoSizeMaxTextSize="@dimen/activity_horizontal_margin"
+            android:maxLines="2"
+            android:text="Maharaja Food"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20dp"
-            />
+            tools:minLines="1" />
     </LinearLayout>
+
 </android.support.v7.widget.CardView>
