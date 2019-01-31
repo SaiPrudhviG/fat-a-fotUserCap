@@ -3,6 +3,7 @@ package com.example.fat_a_fot;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -56,28 +57,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         for(int i=0; i<=10; i++){
             JSONObject jo = new JSONObject();
             JSONObject mainObj = new JSONObject();
-
             try {
                 jo.put("firstName", "Movie Name "+i);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             ja.put(jo);
-
-
-
         }
-
-
-
-
-
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_MainActivity);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
         mAdapter = new ShopkeeperCardRecyclerViewAdapter(ja,this);
         mRecyclerView.setAdapter(mAdapter);
 
