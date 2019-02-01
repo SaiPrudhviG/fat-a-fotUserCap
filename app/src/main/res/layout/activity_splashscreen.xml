@@ -27,7 +27,7 @@
             android:id="@+id/internetErrorIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/internet_error_icon" />
+            android:src="@drawable/splashscreen" />
 
         <TextView
             android:id="@+id/errorText"
