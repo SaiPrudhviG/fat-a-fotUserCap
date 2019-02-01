@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".cart_items_list" />
         <activity android:name=".signup" />
-        <activity android:name=".splashscreen"></activity>
+        <activity android:name=".splashscreen" />
+        <activity android:name=".User_profile"></activity>
     </application>
 
 </manifest>
