@@ -1,7 +1,9 @@
 package com.example.fat_a_fot;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -122,8 +124,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
+            Intent Userprofile=new Intent(MainActivity.this,User_profile.class);
+            startActivity(Userprofile);
+
             // Handle the camera action
         } else if (id == R.id.nav_Myorder) {
+            Intent Myorders=new Intent(MainActivity.this,cart_items_list.class);
+            startActivity(Myorders);
 
         } else if (id == R.id.nav_Termsandprivacy) {
 
@@ -132,6 +139,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_contactus) {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:9182901719"));
+            startActivity(intent);
 
         }
 
