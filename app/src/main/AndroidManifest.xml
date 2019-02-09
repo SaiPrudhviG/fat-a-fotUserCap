@@ -12,19 +12,23 @@
         <activity
             android:name=".Splashscreen"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-           >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".signup"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".cart_items_list" />
-        <activity android:name=".signup" />
-        <activity android:name=".User_profile"></activity>
+        <activity android:name=".User_profile" />
+        <activity android:name=".shopitems" />
+        <activity android:name=".otp_activity" android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

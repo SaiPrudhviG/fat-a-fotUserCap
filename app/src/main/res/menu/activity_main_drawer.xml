@@ -15,7 +15,7 @@
         <item
             android:id="@+id/nav_Termsandprivacy"
             android:icon="@drawable/ic_event_note_black_24dp"
-            android:title="Terms and Privacy" />
+            android:title="Shopkeeper items" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_power_settings_new_black_24dp"

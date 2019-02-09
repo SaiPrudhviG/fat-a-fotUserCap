@@ -43,33 +43,22 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/male"
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/male_unselect"
-                    app:civ_border_color="@color/light_black"
-                    app:civ_border_width="0.5dp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/female"
+                    android:text="Male"
+                    android:layout_marginRight="2dp"/>
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:src="@drawable/female_unselect"
-                    app:civ_border_color="@color/light_black"
-                    app:civ_border_width="0.5dp" />
+                    android:text="Female"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="5dp"></RadioButton>
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -80,10 +69,29 @@
                 android:paddingRight="6dp">
 
                 <EditText
-                    android:id="@+id/mobEditText"
+                    android:id="@+id/Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mobile Number *"
+                    android:hint="Email Address *"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingLeft="6dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp">
+
+                <EditText
+                    android:id="@+id/Mobile_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number*"
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:paddingLeft="6dp"
@@ -101,18 +109,6 @@
                 android:text="Update"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
-            <Button
-                android:id="@+id/logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:inputType="text"
-                android:text="Logout"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-
-
         </LinearLayout>
 
         <LinearLayout

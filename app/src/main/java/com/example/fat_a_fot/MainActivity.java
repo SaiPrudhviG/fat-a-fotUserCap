@@ -133,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(Myorders);
 
         } else if (id == R.id.nav_Termsandprivacy) {
+            Intent shopkeeperitems=new Intent(MainActivity.this,shopitems.class);
+            startActivity(shopkeeperitems);
+
 
         } else if (id == R.id.nav_logout) {
 
