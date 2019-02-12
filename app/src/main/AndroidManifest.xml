@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fat_a_fot">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,15 +26,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".signup"
+            android:name=".Signup"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".cart_items_list" />
-        <activity android:name=".User_profile" />
-        <activity android:name=".shopitems" />
-        <activity android:name=".otp_activity" android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity
+            android:name=".NoInternetConnectionActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Otp_activity" android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

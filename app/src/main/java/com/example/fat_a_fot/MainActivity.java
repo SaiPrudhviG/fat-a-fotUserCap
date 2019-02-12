@@ -7,9 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,26 +18,53 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    TextView username;
+    TextView mobile;
+    private SessionManager session;
+    private SQLLiteHandler db;
     @SuppressLint({"RestrictedApi", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new SQLLiteHandler(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
+        if (savedInstanceState == null) {
+
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.content_frame, newFragment);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+        if (Detectconnection.checkInternetConnection(this)) {
+            if (Common.getSavedUserData(MainActivity.this, "mobile").equalsIgnoreCase("")) {
+                Intent intent = new Intent(this, Signup.class);
+                startActivity(intent);
+            }
+
+        } else {
+            Toast.makeText(this, "Check Internet Connection.", Toast.LENGTH_LONG).show();
+            Intent noconnection = new Intent(MainActivity.this, NoInternetConnectionActivity.class);
+            startActivity(noconnection);
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setTitle("Fat-A-Fot");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
+        fab.hide();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,35 +80,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        //navigationView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        navigationView.setBackgroundTintList(ColorStateList.valueOf(getColor(android.R.color.background_light)));
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        username = (TextView) headerView.findViewById(R.id.name);
+        mobile = (TextView) headerView.findViewById(R.id.mobile);
 
-        JSONArray ja = new JSONArray();
-
-
-        for(int i=0; i<=10; i++){
-            JSONObject jo = new JSONObject();
-            JSONObject mainObj = new JSONObject();
-            try {
-                jo.put("firstName", "Movie Name "+i);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            ja.put(jo);
-        }
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycle_MainActivity);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
-        mAdapter = new ShopkeeperCardRecyclerViewAdapter(ja,this);
-        mRecyclerView.setAdapter(mAdapter);
-
-
-
-
-
-
-
+        mobile.setText(Common.getSavedUserData(MainActivity.this, "mobile"));
+//        if(! Common.getSavedUserData(MainActivity.this, "name").isEmpty()){
+//            username.setText(Common.getSavedUserData(MainActivity.this, "name"));
+//        }
     }
 
     @Override
@@ -124,32 +130,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            Intent Userprofile=new Intent(MainActivity.this,User_profile.class);
-            startActivity(Userprofile);
 
-            // Handle the camera action
+            Fragment newFragment = new ProfileFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.content_frame, newFragment);
+            ft.addToBackStack(null);
+            ft.commit();
         } else if (id == R.id.nav_Myorder) {
-            Intent Myorders=new Intent(MainActivity.this,cart_items_list.class);
-            startActivity(Myorders);
-
+            Fragment newFragment = new MyOrderFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.content_frame, newFragment);
+            ft.addToBackStack(null);
+            ft.commit();
         } else if (id == R.id.nav_Termsandprivacy) {
-            Intent shopkeeperitems=new Intent(MainActivity.this,shopitems.class);
+            Intent shopkeeperitems=new Intent(MainActivity.this, Shopitems.class);
             startActivity(shopkeeperitems);
-
-
         } else if (id == R.id.nav_logout) {
-
+            clearApplicationData();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_contactus) {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:9182901719"));
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void clearApplicationData() {
+        File cacheDirectory = getCacheDir();
+        File applicationDirectory = new File(cacheDirectory.getParent());
+        Common.saveUserData(MainActivity.this, "email", "");
+        Common.saveUserData(MainActivity.this, "userId", "");
+        Common.saveUserData(MainActivity.this, "name", "");
+        Common.saveUserData(MainActivity.this, "mobile", "");
+        Common.saveUserData(MainActivity.this, "image", "");
+        if (applicationDirectory.exists()) {
+            String[] fileNames = applicationDirectory.list();
+            for (String fileName : fileNames) {
+                if (!fileName.equals("lib")) {
+                    deleteFile(new File(applicationDirectory, fileName));
+                    Intent login = new Intent(MainActivity.this,Signup.class);
+                    startActivity(login);
+                }
+            }
+        }
+    }
+
+    public static boolean deleteFile(File file) {
+        boolean deletedAll = true;
+        if (file != null) {
+            if (file.isDirectory()) {
+                String[] children = file.list();
+                for (int i = 0; i < children.length; i++) {
+                    deletedAll = deleteFile(new File(file, children[i])) && deletedAll;
+                }
+            } else {
+                deletedAll = file.delete();
+            }
+        }
+
+        return deletedAll;
     }
 }

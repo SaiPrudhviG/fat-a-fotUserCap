@@ -61,7 +61,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/Resendotp"
+                android:id="@+id/resendotp"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
@@ -73,8 +73,8 @@
                 android:textSize="15sp"
                 android:layout_marginRight="2dp"/>
             <TextView
-                android:id="@+id/Submit_otp"
-                android:layout_toRightOf="@id/Resendotp"
+                android:id="@+id/submit_otp"
+                android:layout_toRightOf="@id/resendotp"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"

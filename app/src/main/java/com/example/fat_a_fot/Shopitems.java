@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-public class shopitems extends AppCompatActivity {
+public class Shopitems extends AppCompatActivity {
     ListView list;
 
     String[] maintitle ={
