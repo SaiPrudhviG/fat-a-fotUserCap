@@ -48,7 +48,7 @@
                     android:backgroundTint="@color/light_black"
                     android:hint="Please Enter OTP"
                     android:imeOptions="actionNext"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:paddingLeft="5dp"
                     android:paddingBottom="15dp"
                     android:singleLine="true"

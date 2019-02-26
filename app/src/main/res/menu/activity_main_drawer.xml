@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_event_note_black_24dp"
+            android:title="Home" />
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="My Profile" />
@@ -13,9 +17,9 @@
             android:icon="@drawable/ic_shopping_cart_black_24dp"
             android:title="My Orders" />
         <item
-            android:id="@+id/nav_Termsandprivacy"
-            android:icon="@drawable/ic_event_note_black_24dp"
-            android:title="Shopkeeper items" />
+            android:id="@+id/nav_Mycart"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="My Cart" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_power_settings_new_black_24dp"

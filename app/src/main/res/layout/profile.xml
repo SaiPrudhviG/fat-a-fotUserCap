@@ -95,6 +95,7 @@
                         android:hint="Mobile Number*"
                         android:imeOptions="actionNext"
                         android:inputType="number"
+                        android:editable="false"
                         android:paddingLeft="6dp"
                         android:singleLine="true"
                         android:textSize="14sp" />

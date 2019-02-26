@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class MyOrderFragment extends Fragment implements SwipeRefreshLayout.OnRe
             Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
             startActivity(noconnection);
         }
-//        updateMyOrder(view);
+        updateMyOrder(view);
 
     }
     private void showDialog() {
@@ -67,7 +68,7 @@ public class MyOrderFragment extends Fragment implements SwipeRefreshLayout.OnRe
         pDialog = new ProgressDialog(view.getContext());
         pDialog.setCancelable(false);
         String tag_string_req = "Shopkeeper Card";
-        pDialog.setMessage("Fetching Shopkeeper Details...");
+        pDialog.setMessage("Fetching Order Details...");
         showDialog();
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_MYORDER_CARD, new Response.Listener<String>() {
             @Override
@@ -76,10 +77,12 @@ public class MyOrderFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        RecyclerViewAdapterMyorder adapter = new RecyclerViewAdapterMyorder(jObj.getJSONArray("myorder"), view.getContext());
+                        RecyclerViewAdapterMyorder adapter = new RecyclerViewAdapterMyorder(jObj.getJSONArray("item"), view.getContext());
                         RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_myorder);
                         myView.setHasFixedSize(true);
                         myView.setAdapter(adapter);
+                        GridLayoutManager llm = new GridLayoutManager(view.getContext(),1);
+                        myView.setLayoutManager(llm);
                         hideDialog();
                         swipeRefreshLayout.setRefreshing(false);
                     } else {

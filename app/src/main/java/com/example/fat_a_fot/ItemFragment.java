@@ -7,7 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,23 +38,22 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("My Order");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Items");
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         this.view = view;
-        if (Detectconnection.checkInternetConnection(view.getContext())) {
-            if (Common.getSavedUserData(view.getContext(), "mobile").equalsIgnoreCase("")) {
-                Intent intent = new Intent(view.getContext(), Signup.class);
-                startActivity(intent);
-                Toast.makeText(view.getContext(), " Please Login Again.", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(view.getContext(), "Check Internet Connection.", Toast.LENGTH_LONG).show();
-            Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
-            startActivity(noconnection);
-        }
-//        updateMyOrder(view);
-
+//        if (Detectconnection.checkInternetConnection(view.getContext())) {
+//            if (Common.getSavedUserData(view.getContext(), "mobile").equalsIgnoreCase("")) {
+//                Intent intent = new Intent(view.getContext(), Signup.class);
+//                startActivity(intent);
+//                Toast.makeText(view.getContext(), " Please Login Again.", Toast.LENGTH_LONG).show();
+//            }
+//        } else {
+//            Toast.makeText(view.getContext(), "Check Internet Connection.", Toast.LENGTH_LONG).show();
+//            Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
+//            startActivity(noconnection);
+//        }
+        items(this.view);
     }
     private void showDialog() {
         if (!pDialog.isShowing())
@@ -62,23 +63,26 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-    public void updateMyOrder(final View view) {
+    public void items(final View view) {
         pDialog = new ProgressDialog(view.getContext());
         pDialog.setCancelable(false);
-        String tag_string_req = "Shopkeeper Card";
-        pDialog.setMessage("Fetching Shopkeeper Details...");
+        String tag_string_req = "Items Card";
+        pDialog.setMessage("Fetching Items Details...");
         showDialog();
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_ITEM_CARD, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("data",response);
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        RecyclerViewAdapterItem adapter = new RecyclerViewAdapterItem(jObj.getJSONArray("shopkeepers"), view.getContext());
-                        RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_item);
+                        RecyclerViewAdapterItem adapter = new RecyclerViewAdapterItem(jObj.getJSONArray("item"), view.getContext());
+                        RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_items);
                         myView.setHasFixedSize(true);
                         myView.setAdapter(adapter);
+                        GridLayoutManager llm = new GridLayoutManager(view.getContext(),2);
+                        myView.setLayoutManager(llm);
                         hideDialog();
                         swipeRefreshLayout.setRefreshing(false);
                     } else {
@@ -110,6 +114,6 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
     @Override
     public void onRefresh() {
-        updateMyOrder(view);
+        items(view);
     }
 }

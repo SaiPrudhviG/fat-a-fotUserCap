@@ -111,7 +111,7 @@ public class Otp_activity extends AppCompatActivity {
     }
     private void checkLogin(final String otp_number,final String mobile_number) {
         String tag_string_req = "req_login";
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Logging in...");
         showDialog();
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_USER_OTP_CHECK, new Response.Listener<String>() {
             @Override

@@ -47,16 +47,14 @@
                         android:backgroundTint="@color/light_black"
                         android:hint="Enter Your Mobile Number"
                         android:imeOptions="actionNext"
-                        android:inputType="phone"
+                        android:inputType="number"
                         android:paddingLeft="5dp"
                         android:paddingBottom="15dp"
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="15sp" />
-
                 </android.support.design.widget.TextInputLayout>
-
                 <TextView
                     android:id="@+id/txtSignup"
                     android:layout_width="150dp"

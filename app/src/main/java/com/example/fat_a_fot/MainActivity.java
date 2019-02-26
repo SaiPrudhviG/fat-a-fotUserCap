@@ -36,14 +36,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         db = new SQLLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
         if (savedInstanceState == null) {
-
             Fragment newFragment = new HomeFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.content_frame, newFragment);
+            ft.replace(R.id.content_frame,newFragment);
             ft.addToBackStack(null);
             ft.commit();
         }
@@ -84,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.name);
         mobile = (TextView) headerView.findViewById(R.id.mobile);
-
         mobile.setText(Common.getSavedUserData(MainActivity.this, "mobile"));
 //        if(! Common.getSavedUserData(MainActivity.this, "name").isEmpty()){
 //            username.setText(Common.getSavedUserData(MainActivity.this, "name"));
@@ -100,55 +97,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_profile) {
-
             Fragment newFragment = new ProfileFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.content_frame, newFragment);
-            ft.addToBackStack(null);
+            ft.replace(R.id.content_frame,newFragment);
+            ft.commit();
+        }else if (id == R.id.nav_home) {
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame,newFragment);
             ft.commit();
         } else if (id == R.id.nav_Myorder) {
             Fragment newFragment = new MyOrderFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.content_frame, newFragment);
-            ft.addToBackStack(null);
+            ft.replace(R.id.content_frame,newFragment);
             ft.commit();
-        } else if (id == R.id.nav_Termsandprivacy) {
-            Intent shopkeeperitems=new Intent(MainActivity.this, Shopitems.class);
-            startActivity(shopkeeperitems);
+        }else if (id == R.id.nav_Mycart) {
+            Fragment newFragment = new UserCartFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame,newFragment);
+            ft.commit();
         } else if (id == R.id.nav_logout) {
             clearApplicationData();
         } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_contactus) {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:9182901719"));
@@ -191,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 deletedAll = file.delete();
             }
         }
-
         return deletedAll;
     }
 }

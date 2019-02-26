@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.item, container, false);
+        return inflater.inflate(R.layout.itemcart, container, false);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
             Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
             startActivity(noconnection);
         }
-//        updateMyOrder(view);
+        updateMycart(view);
 
     }
     private void showDialog() {
@@ -62,23 +63,25 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-    public void updateMyOrder(final View view) {
+    public void updateMycart(final View view) {
         pDialog = new ProgressDialog(view.getContext());
         pDialog.setCancelable(false);
         String tag_string_req = "Cart Card";
         pDialog.setMessage("Fetching Card Details...");
         showDialog();
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_ITEM_CARD, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_USER_CARD_CART, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(jObj.getJSONArray("cart"), view.getContext());
-                        RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_item);
+                        RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(jObj.getJSONArray("item"), view.getContext());
+                        RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_cart);
                         myView.setHasFixedSize(true);
                         myView.setAdapter(adapter);
+                        GridLayoutManager llm = new GridLayoutManager(view.getContext(),1);
+                        myView.setLayoutManager(llm);
                         hideDialog();
                         swipeRefreshLayout.setRefreshing(false);
                     } else {
@@ -110,6 +113,6 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
     @Override
     public void onRefresh() {
-        updateMyOrder(view);
+        updateMycart(view);
     }
 }

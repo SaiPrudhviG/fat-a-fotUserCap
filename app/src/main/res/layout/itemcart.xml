@@ -9,7 +9,7 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent">
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_shopkeeper"
+            android:id="@+id/recycle_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

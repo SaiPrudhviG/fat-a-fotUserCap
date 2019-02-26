@@ -17,6 +17,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
@@ -74,12 +76,11 @@ public class ProfileFragment extends Fragment {
                     boolean error = jObj.getBoolean("success");
                     if (error) {
                         JSONObject user = jObj.getJSONObject("user");
-                        Log.d("arun f",user.toString());
                         name.setText(user.getString("name"));
                         email.setText(user.getString("email"));
-                        if(user.getString("gender") == "Male"){
+                        if(user.getString("gender").matches("Male")){
                             radioButton_male.setChecked(true);
-                        }else if(user.getString("gender") == "Female"){
+                        }else if(user.getString("gender").matches("Female")){
                             radioButton_female.setChecked(true);
                         }
                         mobile.setText(user.getString("mobile"));
@@ -117,12 +118,10 @@ public class ProfileFragment extends Fragment {
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_UPDATE_USER_DETAILS, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("check",response);
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-
                         hideDialog();
                     } else {
                         String errorMsg = jObj.getString("message");

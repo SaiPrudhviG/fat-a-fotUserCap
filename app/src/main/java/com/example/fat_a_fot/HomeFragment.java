@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
             startActivity(noconnection);
         }
-//        updateShopkeeper(view);
+        updateShopkeeper(view);
 
     }
     private void showDialog() {
@@ -79,11 +80,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     if (error) {
                         RecyclerViewAdapterShopkeeper adapter = new RecyclerViewAdapterShopkeeper(jObj.getJSONArray("shopkeepers"),view.getContext());
                         RecyclerView myView =  (RecyclerView)getView().findViewById(R.id.recycle_shopkeeper);
-//                        myView.setLayoutManager(new GridLayoutManager.LayoutParams(this,2));
                         myView.setHasFixedSize(true);
                         myView.setAdapter(adapter);
                         GridLayoutManager llm = new GridLayoutManager(view.getContext(),2);
-//                        llm.setOrientation(LinearLayoutManager.VERTICAL);
                         myView.setLayoutManager(llm);
                         hideDialog();
                         swipeRefreshLayout.setRefreshing(false);
