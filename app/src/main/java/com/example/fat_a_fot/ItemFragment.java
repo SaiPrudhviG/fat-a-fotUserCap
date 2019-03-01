@@ -42,17 +42,6 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         this.view = view;
-//        if (Detectconnection.checkInternetConnection(view.getContext())) {
-//            if (Common.getSavedUserData(view.getContext(), "mobile").equalsIgnoreCase("")) {
-//                Intent intent = new Intent(view.getContext(), Signup.class);
-//                startActivity(intent);
-//                Toast.makeText(view.getContext(), " Please Login Again.", Toast.LENGTH_LONG).show();
-//            }
-//        } else {
-//            Toast.makeText(view.getContext(), "Check Internet Connection.", Toast.LENGTH_LONG).show();
-//            Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
-//            startActivity(noconnection);
-//        }
         items(this.view);
     }
     private void showDialog() {
@@ -72,7 +61,6 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_ITEM_CARD, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("data",response);
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");

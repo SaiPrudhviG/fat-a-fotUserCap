@@ -1,4 +1,5 @@
-<android.support.v7.widget.CardView android:id="@+id/cardView1"
+<android.support.v7.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -8,27 +9,39 @@
     app:cardCornerRadius="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_white">
-
+        <Button
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/delete"
+            android:text="x"/>
         <ImageView
             android:id="@+id/image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3sp"
             android:src="@drawable/defaultimage" />
-
         <RelativeLayout
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/image"
+            android:layout_toRightOf="@+id/image"
             android:paddingLeft="15dp"
             android:paddingRight="5dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/item_id"
+                android:text=""/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/cart_id"
+                android:text=""/>
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
@@ -39,117 +52,76 @@
                 android:text="Chicken Biryani"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="15sp" />
-
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/variant"
+                android:layout_width="60sp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="7dp"
+                android:capitalize="words"
+                android:maxLines="1"
+                android:text="Small "
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="60sp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="7dp"
+                android:layout_toRightOf="@+id/variant"
+                android:maxLines="1"
+                android:text="Rs.1100"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/sym"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="7dp"
+                android:layout_toRightOf="@+id/price"
+                android:maxLines="1"
+                android:text="  X  "
+                android:textColor="@color/black"
+                android:textSize="12sp" />
             <TextView
                 android:id="@+id/quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
                 android:layout_marginTop="7dp"
-                android:maxLines="3"
-                android:text="Quanitity"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
+                android:layout_toRightOf="@+id/sym"
+                android:maxLines="1"
+                android:text="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp" />
             <TextView
-                android:id="@+id/currency"
+                android:id="@+id/equal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
                 android:layout_marginTop="7dp"
                 android:layout_toRightOf="@+id/quantity"
-                android:maxLines="3"
-                android:text="(1) "
+                android:maxLines="1"
+                android:text="  =  "
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
             <TextView
-                android:id="@+id/price1"
+                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
                 android:layout_marginTop="7dp"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/currency"
-                android:maxLines="3"
-                android:text="Rs:-60"
+                android:layout_toRightOf="@+id/equal"
+                android:maxLines="1"
+                android:text=" Rs. 00"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
-            <TextView
-                android:id="@+id/minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name"
-                android:layout_toRightOf="@id/price1"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/custom_dialog_button"
-                android:paddingBottom="2dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="2dp"
-                android:text="-"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-            <TextView
-                android:id="@+id/prequant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
-                android:layout_marginTop="7dp"
-                android:layout_marginLeft="1dp"
-                android:layout_toRightOf="@+id/minus"
-                android:maxLines="3"
-                android:text="1"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-            <TextView
-                android:id="@+id/plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name"
-                android:layout_toRightOf="@id/prequant"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/custom_dialog_button"
-                android:paddingBottom="2dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="2dp"
-                android:text="+"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-
-            <LinearLayout
-                android:id="@+id/sizeColorLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/price1"
-                android:orientation="horizontal">
-            </LinearLayout>
-            <TextView
-                android:id="@+id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/sizeColorLayout"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="7dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/custom_dialog_button"
-                android:paddingBottom="2dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="2dp"
-                android:text="View"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
         </RelativeLayout>
-
-
-        <ImageView
+        <!--<ImageView
             android:id="@+id/delete"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -158,8 +130,7 @@
             android:layout_margin="10dp"
             android:padding="3dp"
             android:src="@drawable/delete_icon"
-            android:tint="#C7C7C7" />
-
+            android:tint="#C7C7C7" />-->
     </RelativeLayout>
 </android.support.v7.widget.CardView>
 

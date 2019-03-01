@@ -58,12 +58,12 @@ public class RecyclerViewAdapterItem extends RecyclerView.Adapter<RecyclerViewAd
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
-//                        Fragment newFragment = new ItemFragment();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("id",id.getText().toString());
-//                        newFragment.setArguments(bundle);
-//                        AppCompatActivity activity1 = (AppCompatActivity) v.getContext();
-//                        activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
+                        Fragment newFragment = new ItemDetails();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("item_id",id.getText().toString());
+                        newFragment.setArguments(bundle);
+                        AppCompatActivity activity1 = (AppCompatActivity) v.getContext();
+                        activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                     }
                 }
             });
