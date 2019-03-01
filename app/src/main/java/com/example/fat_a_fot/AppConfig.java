@@ -14,5 +14,7 @@ public class AppConfig {
     public static String URL_USER_CARD_CART = "https://fat-a-fot.com/fat-a-fot-admin/JSON/userCart.php";
     public static String URL_USER_ADD_CART = "https://fat-a-fot.com/fat-a-fot-admin/JSON/userAddCart.php";
     public static String URL_USER_REMOVE_CART = "https://fat-a-fot.com/fat-a-fot-admin/JSON/userRemoveCart.php";
+    public static String URL_ITEM_CART_UPDATE = "https://fat-a-fot.com/fat-a-fot-admin/JSON/ItemCartUpdate.php";
+    public static String URL_USER_ORDER = "https://fat-a-fot.com/fat-a-fot-admin/JSON/ItemOrder.php";
 }
 

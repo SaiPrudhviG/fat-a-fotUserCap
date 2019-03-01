@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Common.saveUserData(MainActivity.this, "name", "");
         Common.saveUserData(MainActivity.this, "mobile", "");
         Common.saveUserData(MainActivity.this, "image", "");
+        Common.saveUserData(MainActivity.this, "temp_mobile","");
         if (applicationDirectory.exists()) {
             String[] fileNames = applicationDirectory.list();
             for (String fileName : fileNames) {

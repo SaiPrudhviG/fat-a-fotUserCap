@@ -47,8 +47,6 @@ public class Signup extends AppCompatActivity {
         pDialog.setCancelable(false);
         db = new SQLLiteHandler(getApplicationContext());
         session = new SessionManager(getApplicationContext());
-
-
         btnsignup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String mobilenumber = mobile.getText().toString().trim();

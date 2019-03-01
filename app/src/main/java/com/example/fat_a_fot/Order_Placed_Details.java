@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,36 +12,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class Order_Placed_Details extends Fragment {
     private ProgressDialog pDialog;
-    private SwipeRefreshLayout swipeRefreshLayout;
     Button place_order;
+    EditText name,address,city,state,mobile;
+    TextView total;
     View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.itemcart, container, false);
+        View v = inflater.inflate(R.layout.order_place_details, container, false);
+        place_order =(Button) v.findViewById(R.id.order);
+        name = (EditText)v.findViewById(R.id.name);
+        address = (EditText)v.findViewById(R.id.address);
+        city = (EditText)v.findViewById(R.id.city);
+        state = (EditText)v.findViewById(R.id.state);
+        mobile = (EditText)v.findViewById(R.id.mobile);
+        total = (TextView)v.findViewById(R.id.total);
+        return v;
     }
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Cart");
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(this);
-        place_order = (Button)view.findViewById(R.id.place_order);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Add Details");
+
         this.view = view;
         if (Detectconnection.checkInternetConnection(view.getContext())) {
             if (Common.getSavedUserData(view.getContext(), "mobile").equalsIgnoreCase("")) {
@@ -55,13 +60,10 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
             Intent noconnection = new Intent(view.getContext(), NoInternetConnectionActivity.class);
             startActivity(noconnection);
         }
-        updateMycart(view);
         place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment newFragment = new Order_Placed_Details();
-                AppCompatActivity activity1 = (AppCompatActivity) v.getContext();
-                activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
+                updateMyOrder(view);
             }
         });
     }
@@ -73,13 +75,13 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-    public void updateMycart(final View view) {
+    public void updateMyOrder(final View view) {
         pDialog = new ProgressDialog(view.getContext());
         pDialog.setCancelable(false);
         String tag_string_req = "Cart Card";
-        pDialog.setMessage("Fetching Card Details...");
+        pDialog.setMessage("Wait Some...");
         showDialog();
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_USER_CARD_CART, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_USER_ORDER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -93,36 +95,33 @@ public class UserCartFragment extends Fragment implements SwipeRefreshLayout.OnR
                         GridLayoutManager llm = new GridLayoutManager(view.getContext(),1);
                         myView.setLayoutManager(llm);
                         hideDialog();
-                        swipeRefreshLayout.setRefreshing(false);
                     } else {
                         String errorMsg = jObj.getString("message");
                         hideDialog();
-                        swipeRefreshLayout.setRefreshing(false);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     hideDialog();
-                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 hideDialog();
-                swipeRefreshLayout.setRefreshing(false);
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mobile", Common.getSavedUserData(view.getContext(), "mobile"));
+                params.put("name", name.getText().toString());
+                params.put("address", address.getText().toString());
+                params.put("city", city.getText().toString());
+                params.put("state", state.getText().toString());
+                params.put("order_mobile", mobile.getText().toString());
                 return params;
             }
         };
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }
-    @Override
-    public void onRefresh() {
-        updateMycart(view);
     }
 }

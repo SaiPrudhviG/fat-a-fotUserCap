@@ -1,5 +1,6 @@
 package com.example.fat_a_fot;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,7 @@ public class RecyclerViewAdapterShopkeeper extends RecyclerView.Adapter<Recycler
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardshpokeeper, parent, false);
-        return new MyViewHolder(listItem);
+        return new MyViewHolder(listItem,context);
     }
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
@@ -47,7 +48,7 @@ public class RecyclerViewAdapterShopkeeper extends RecyclerView.Adapter<Recycler
         private TextView name,id;
 
         private ImageView image;
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView, final Context context) {
             super(itemView);
             image = (ImageView)itemView.findViewById(R.id.image);
             name = (TextView)itemView.findViewById(R.id.name);
@@ -57,10 +58,8 @@ public class RecyclerViewAdapterShopkeeper extends RecyclerView.Adapter<Recycler
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
+                        Common.saveUserData(context, "shopkeeper",id.getText().toString());
                         Fragment newFragment = new ItemFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("id",id.getText().toString());
-                        newFragment.setArguments(bundle);
                         AppCompatActivity activity1 = (AppCompatActivity) v.getContext();
                         activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                     }

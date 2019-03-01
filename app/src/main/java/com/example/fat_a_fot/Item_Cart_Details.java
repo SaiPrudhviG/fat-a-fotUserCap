@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,15 +19,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemDetails extends Fragment{
+public class Item_Cart_Details extends Fragment {
     private ProgressDialog pDialog;
     View view;
-    String item_id,shop_id;
+    String item_id,shop_id,cart_id;
     Toolbar toolbar_name;
     ImageView image_large;
     TextView full_total,full_price,small_price,half_price,small_total,half_total,item_quant_small,item_quant_half,item_quant_full;
@@ -38,12 +39,13 @@ public class ItemDetails extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.item_id = getArguments().getString("item_id");
         this.shop_id = getArguments().getString("shop_id");
-        return inflater.inflate(R.layout.activity_item_details, container, false);
+        this.cart_id = getArguments().getString("cart_id");
+        return inflater.inflate(R.layout.item_cart_details, container, false);
     }
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Items");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Cart Item");
         this.view = view;
         items(this.view);
         toolbar_name = (Toolbar) getActivity().findViewById(R.id.toolbar_name);
@@ -159,7 +161,7 @@ public class ItemDetails extends Fragment{
         String tag_string_req = "Items Card";
         pDialog.setMessage("Fetching Items Details...");
         showDialog();
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_ITEM_DETAIL, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_ITEM_CART_UPDATE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -191,7 +193,7 @@ public class ItemDetails extends Fragment{
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", item_id);
+                params.put("cart_id", cart_id);
                 return params;
             }
         };
@@ -206,13 +208,11 @@ public class ItemDetails extends Fragment{
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_USER_ADD_CART, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("data",response);
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        Fragment newFragment = new UserCartFragment();
-                        AppCompatActivity activity1 = (AppCompatActivity) getContext();
-                        activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                         hideDialog();
                     } else {
                         String errorMsg = jObj.getString("message");

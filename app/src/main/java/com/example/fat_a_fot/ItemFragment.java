@@ -29,6 +29,7 @@ import java.util.Map;
 public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private ProgressDialog pDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private String shop_id;
     View view;
     @Nullable
     @Override
@@ -65,7 +66,7 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        RecyclerViewAdapterItem adapter = new RecyclerViewAdapterItem(jObj.getJSONArray("item"), view.getContext());
+                        RecyclerViewAdapterItem adapter = new RecyclerViewAdapterItem(jObj.getJSONArray("item"),shop_id, view.getContext());
                         RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_items);
                         myView.setHasFixedSize(true);
                         myView.setAdapter(adapter);
