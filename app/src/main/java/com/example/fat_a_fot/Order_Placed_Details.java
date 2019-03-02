@@ -88,12 +88,9 @@ public class Order_Placed_Details extends Fragment {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(jObj.getJSONArray("item"), view.getContext());
-                        RecyclerView myView = (RecyclerView) getView().findViewById(R.id.recycle_cart);
-                        myView.setHasFixedSize(true);
-                        myView.setAdapter(adapter);
-                        GridLayoutManager llm = new GridLayoutManager(view.getContext(),1);
-                        myView.setLayoutManager(llm);
+                        Fragment newFragment = new MyOrderFragment();
+                        AppCompatActivity activity1 = (AppCompatActivity) getContext();
+                        activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                         hideDialog();
                     } else {
                         String errorMsg = jObj.getString("message");

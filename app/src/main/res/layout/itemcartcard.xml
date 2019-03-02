@@ -17,6 +17,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:id="@+id/delete"
+            android:background="@drawable/roundshapedstyle"
             android:text="x"/>
         <ImageView
             android:id="@+id/image"

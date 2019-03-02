@@ -122,6 +122,9 @@ public class ProfileFragment extends Fragment {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
+                        Fragment newFragment = new ProfileFragment();
+                        AppCompatActivity activity1 = (AppCompatActivity) getContext();
+                        activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                         hideDialog();
                     } else {
                         String errorMsg = jObj.getString("message");

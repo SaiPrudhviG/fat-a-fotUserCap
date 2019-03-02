@@ -39,7 +39,7 @@ public class ItemFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Items");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Dishes");
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         this.view = view;

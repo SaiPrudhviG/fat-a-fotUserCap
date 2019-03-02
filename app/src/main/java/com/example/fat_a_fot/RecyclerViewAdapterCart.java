@@ -64,7 +64,6 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
                     deleteCart(context,holder.cart_id.getText().toString());
                 }
             });
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -125,7 +124,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView name,price,quantity,total,variant,item_id,cart_id,shop_name,shop_id;
         private ImageView image;
-        private Button delete,palce_order;
+        private Button delete,place_order;
         public MyViewHolder(View itemView) {
             super(itemView);
             image = (ImageView)itemView.findViewById(R.id.image);
@@ -136,7 +135,6 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             quantity = (TextView)itemView.findViewById(R.id.quantity);
             total = (TextView)itemView.findViewById(R.id.total);
             delete = (Button)itemView.findViewById(R.id.delete);
-            //palce_order = (Button)itemView.findViewById(R.id.palce_order);
             variant = (TextView)itemView.findViewById(R.id.variant);
             shop_name = (TextView)itemView.findViewById(R.id.shop_name);
             shop_id = (TextView)itemView.findViewById(R.id.shop_id);
@@ -145,14 +143,6 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
                 public void onClick(View v) {
                 int pos = getAdapterPosition();
                 if(pos != RecyclerView.NO_POSITION){
-//                    Fragment newFragment = new Item_Cart_Details();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("item_id",item_id.getText().toString());
-//                    bundle.putString("shop_id",shop_id.getText().toString());
-//                    bundle.putString("cart_id",cart_id.getText().toString());
-//                    newFragment.setArguments(bundle);
-//                    AppCompatActivity activity1 = (AppCompatActivity) v.getContext();
-//                    activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                 }
                 }
             });

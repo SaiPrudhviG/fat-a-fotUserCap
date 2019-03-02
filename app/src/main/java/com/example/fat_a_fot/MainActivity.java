@@ -133,7 +133,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.commit();
         } else if (id == R.id.nav_logout) {
             clearApplicationData();
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_chat)
+        {
+            try {
+                /*String url="=";*/
+                String no = "+918374042767";
+                String text = "Hello Admin";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://api.whatsapp.com/send?phone=" + no + "&text=" + text));
+                startActivity(i);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         } else if (id == R.id.nav_contactus) {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:9182901719"));

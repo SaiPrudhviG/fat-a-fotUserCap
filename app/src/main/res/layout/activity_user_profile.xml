@@ -107,6 +107,7 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:inputType="text"
                 android:text="Update"
+                android:background="@drawable/roundshapedstyle"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
         </LinearLayout>

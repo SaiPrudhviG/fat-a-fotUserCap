@@ -3,6 +3,7 @@ package com.example.fat_a_fot;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class RecyclerViewAdapterMyorder extends RecyclerView.Adapter<RecyclerVie
     public RecyclerViewAdapterMyorder (JSONArray myValues , Context context){
         this.myValues= myValues;
         this.context = context;
+
     }
     @Override
     public RecyclerViewAdapterMyorder.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,15 +34,18 @@ public class RecyclerViewAdapterMyorder extends RecyclerView.Adapter<RecyclerVie
         try {
             Picasso.with(context).load(myValues.getJSONObject(position).getString("image").toString()).into(holder.image);
             holder.itemname.setText(myValues.getJSONObject(position).getString("name"));
-            holder.qantity.setText(" (1)");
-            holder.price.setText("Rs. "+myValues.getJSONObject(position).getString("price"));
+            holder.qantity.setText("("+myValues.getJSONObject(position).getString("varient_quantity")+")");
+            Integer price = Integer.valueOf(myValues.getJSONObject(position).getString("price")) * Integer.parseInt(myValues.getJSONObject(position).getString("varient_quantity"));
+            holder.price.setText("Rs. "+ price);
             String status = myValues.getJSONObject(position).getString("status");
-            if(status.matches("SCD1")){
+            if(status.matches("SA1")){
+                holder.status.setText("Your Order Is Preparing.");
+            }else if(status.matches("SCD1")){
                 holder.status.setText("Waiting for Delivery Boy!");
             }else if(status.matches("DB1")){
                 holder.status.setText("On the way!");
             }else if(status.matches("DBD1")){
-                holder.status.setText("Delivered");
+                holder.status.setText("Delivered.");
             }
             status = "";
         } catch (JSONException e) {

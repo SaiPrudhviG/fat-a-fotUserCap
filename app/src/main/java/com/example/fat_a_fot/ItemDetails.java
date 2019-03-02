@@ -43,7 +43,7 @@ public class ItemDetails extends Fragment{
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Items");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Item");
         this.view = view;
         items(this.view);
         toolbar_name = (Toolbar) getActivity().findViewById(R.id.toolbar_name);
