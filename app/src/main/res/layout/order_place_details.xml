@@ -6,32 +6,73 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/name"
-            android:hint="name"/>
+            android:hint="Enter Your Name"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mobile"
             android:inputType="number"
-            android:hint="mobile"/>
+            android:hint="Enter Your Mobile"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/address"
-            android:hint="address"/>
+            android:hint="Enter Your Address " />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/city"
-            android:hint="city"/>
+            android:hint="Enter Your City"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/state"
-            android:hint="Sate"/>
+            android:hint="Enter Your State "/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,12 +80,20 @@
             android:paddingBottom="5sp"
             android:id="@+id/total"
             android:paddingTop="5sp"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Payment Option"
             android:paddingBottom="5sp"
             android:paddingTop="5sp"/>
+        </android.support.design.widget.TextInputLayout>
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -58,7 +107,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Place Order"
-            android:id="@+id/order"/>
+            android:id="@+id/order"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/roundshapedstyle"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
