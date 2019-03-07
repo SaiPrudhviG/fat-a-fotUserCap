@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "360202373242",
+    "firebase_url": "https://fat-a-fot-user.firebaseio.com",
+    "project_id": "fat-a-fot-user",
+    "storage_bucket": "fat-a-fot-user.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360202373242:android:7563d68b05aa67e4",
+        "android_client_info": {
+          "package_name": "com.example.fat_a_fot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360202373242-jb1fdf91kv1uf7c6dmj9bs5mmmf1jiht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fat_a_fot",
+            "certificate_hash": "6584718f1723c908a6c24c0af8c50e04018bd24e"
+          }
+        },
+        {
+          "client_id": "360202373242-qe9kmsd45kkffs8us52hef4n67neu9f1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjaelQOOzhOX1a0O5iFBPmCGJKZajc_dk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360202373242-qe9kmsd45kkffs8us52hef4n67neu9f1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

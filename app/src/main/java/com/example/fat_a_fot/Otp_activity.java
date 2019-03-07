@@ -29,12 +29,14 @@ public class Otp_activity extends AppCompatActivity {
     private SessionManager session;
     private SQLLiteHandler db;
     private AppController appController;
+    private MyFirebaseInstanceIdService token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_activity);
         otp = (EditText)findViewById(R.id.otp);
         otp.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        token = new MyFirebaseInstanceIdService();
         Bundle extras = getIntent().getExtras();
         if(extras !=null) {
             String value = extras.getString("otp");
@@ -42,7 +44,6 @@ public class Otp_activity extends AppCompatActivity {
         }
         resend_otp = findViewById(R.id.resendotp);
         submit_otp = findViewById(R.id.submit_otp);
-
         appController = AppController.getInstance();
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
@@ -140,6 +141,8 @@ public class Otp_activity extends AppCompatActivity {
                             Common.saveUserData(Otp_activity.this, "mobile", mobile);
                         }
                         hideDialog();
+                        token.onTokenRefresh();
+                        token.onTokenReftesh(Otp_activity.this);
                         Intent new1 = new Intent(Otp_activity.this, MainActivity.class);
                         startActivity(new1);
                         finish();
