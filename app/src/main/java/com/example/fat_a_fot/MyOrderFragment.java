@@ -35,6 +35,7 @@ public class MyOrderFragment extends Fragment implements SwipeRefreshLayout.OnRe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.myorder, container, false);
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

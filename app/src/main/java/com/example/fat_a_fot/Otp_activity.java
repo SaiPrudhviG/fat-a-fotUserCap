@@ -141,8 +141,8 @@ public class Otp_activity extends AppCompatActivity {
                             Common.saveUserData(Otp_activity.this, "mobile", mobile);
                         }
                         hideDialog();
-                        token.onTokenRefresh();
-                        token.onTokenReftesh(Otp_activity.this);
+                       // token.onTokenRefresh();
+                        //token.onTokenReftesh(Otp_activity.this);
                         Intent new1 = new Intent(Otp_activity.this, MainActivity.class);
                         startActivity(new1);
                         finish();

@@ -17,13 +17,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class RecyclerViewAdapterMyorder extends RecyclerView.Adapter<RecyclerViewAdapterMyorder.MyViewHolder>{
-    private JSONArray myValues;
-    private Context context;
+    private Context context;    private JSONArray myValues;
+
     public RecyclerViewAdapterMyorder (JSONArray myValues , Context context){
         this.myValues= myValues;
         this.context = context;
 
     }
+
     @Override
     public RecyclerViewAdapterMyorder.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.myordercard, parent, false);
@@ -39,6 +40,7 @@ public class RecyclerViewAdapterMyorder extends RecyclerView.Adapter<RecyclerVie
             holder.price.setText("Rs. "+ price);
             String status = myValues.getJSONObject(position).getString("status");
             if(status.matches("SA1")){
+                holder.cancel.setText("Cancel");
                 holder.status.setText("Your Order Is Preparing.");
             }else if(status.matches("SCD1")){
                 holder.status.setText("Waiting for Delivery Boy!");
@@ -52,12 +54,13 @@ public class RecyclerViewAdapterMyorder extends RecyclerView.Adapter<RecyclerVie
             e.printStackTrace();
         }
     }
+
     @Override
     public int getItemCount() {
         return myValues.length();
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView itemname,qantity,price,status;
+        private TextView itemname,qantity,price,status,cancel;
         private ImageView image;
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +69,7 @@ public class RecyclerViewAdapterMyorder extends RecyclerView.Adapter<RecyclerVie
             price = (TextView)itemView.findViewById(R.id.price);
             qantity = (TextView)itemView.findViewById(R.id.quantnum);
             status = (TextView)itemView.findViewById(R.id.status);
+            cancel=(TextView)itemView.findViewById(R.id.cancel);
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {

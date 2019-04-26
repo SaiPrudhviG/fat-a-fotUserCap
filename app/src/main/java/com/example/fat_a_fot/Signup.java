@@ -115,7 +115,10 @@ public class Signup extends AppCompatActivity {
     }
 
     private void hideDialog() {
-        if (pDialog.isShowing())
+        if (pDialog.isShowing()){
             pDialog.dismiss();
+            pDialog.cancel();
+            //pDialog = null;
+        }
     }
 }
