@@ -81,7 +81,7 @@ public class Order_Placed_Details extends Fragment {
         String tag_string_req = "Cart Card";
         pDialog.setMessage("Wait Some...");
         showDialog();
-        Toast.makeText(getActivity(), "Hello", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "In Order Placed", Toast.LENGTH_SHORT).show();
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_USER_ORDER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
