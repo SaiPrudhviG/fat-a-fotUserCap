@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemDetails extends Fragment{
+public class ItemDetails extends Fragment {
     private ProgressDialog pDialog;
     View view;
     String item_id,shop_id;
@@ -78,6 +78,7 @@ public class ItemDetails extends Fragment{
                 Integer total = Integer.parseInt(full_price.getText().toString()) * i;
                 full_total.setText("Rs."+total+" ");
                 item_quant_full.setText(i+" ");
+
             }
         });
         full_sub.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +90,7 @@ public class ItemDetails extends Fragment{
                     Integer total = Integer.parseInt(full_price.getText().toString()) * i;
                     full_total.setText("Rs."+total+" ");
                     item_quant_full.setText(i+" ");
+
                 }
             }
         });
@@ -101,6 +103,7 @@ public class ItemDetails extends Fragment{
                 Integer total = Integer.parseInt(small_price.getText().toString()) * i;
                 small_total.setText("Rs."+total+" ");
                 item_quant_small.setText(i+" ");
+
             }
         });
         small_sub.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +115,7 @@ public class ItemDetails extends Fragment{
                     Integer total = Integer.parseInt(small_price.getText().toString()) * i;
                     small_total.setText("Rs."+total+" ");
                     item_quant_small.setText(i+" ");
+
                 }
             }
         });
@@ -124,6 +128,7 @@ public class ItemDetails extends Fragment{
                 Integer total = Integer.parseInt(half_price.getText().toString()) * i;
                 half_total.setText("Rs."+total+" ");
                 item_quant_half.setText(i+" ");
+
             }
         });
         half_sub.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +140,7 @@ public class ItemDetails extends Fragment{
                     Integer total = Integer.parseInt(half_price.getText().toString()) * i;
                     half_total.setText("Rs."+total+" ");
                     item_quant_half.setText(i+" ");
+
                 }
             }
         });

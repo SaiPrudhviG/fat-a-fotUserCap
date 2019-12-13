@@ -349,6 +349,29 @@
                                 android:textColor="@color/black"
                                 android:textSize="20sp" />
                         </RelativeLayout>
+                       <!-- <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total :       Rs"
+                                android:id="@+id/totalhead"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:textColor="@color/colorPrimaryDark"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/totalamount"
+                                android:text="000"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@+id/totalhead"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:textColor="@color/colorPrimaryDark"></TextView>
+                        </RelativeLayout>-->
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

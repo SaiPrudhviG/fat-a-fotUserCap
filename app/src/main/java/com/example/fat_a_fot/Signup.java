@@ -69,9 +69,11 @@ public class Signup extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jObj = new JSONObject(response);
+                    Log.e("otpcheck",jObj.toString());
                     boolean error = jObj.getBoolean("success");
                     if (error) {
                         session.setLogin(true);
+
                         JSONObject user = jObj.getJSONObject("user");
                         String mobile = user.getString("mobile");
                         Common.saveUserData(Signup.this, "temp_mobile", mobile);

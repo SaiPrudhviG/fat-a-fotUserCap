@@ -88,7 +88,7 @@ public class Order_Placed_Details extends Fragment {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("success");
                     if (error) {
-                        Fragment newFragment = new MyOrderFragment();
+                        Fragment newFragment = new ThankU();
                         AppCompatActivity activity1 = (AppCompatActivity) getContext();
                         activity1.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack(null).commit();
                         hideDialog();
@@ -120,5 +120,6 @@ public class Order_Placed_Details extends Fragment {
             }
         };
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
     }
 }
